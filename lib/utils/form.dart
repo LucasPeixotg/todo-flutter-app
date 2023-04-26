@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskForm extends StatefulWidget {
-  const TaskForm(this.onSubmit);
+  const TaskForm({required this.onSubmit});
   final Function onSubmit;
 
   @override
@@ -10,6 +10,7 @@ class TaskForm extends StatefulWidget {
 
 class _TaskFormState extends State<TaskForm> {
   final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class _TaskFormState extends State<TaskForm> {
       child: Column(
         children: [
           TextFormField(
+            controller: _controller,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
@@ -48,7 +50,9 @@ class _TaskFormState extends State<TaskForm> {
           ),
           ElevatedButton(
             onPressed: () {
-              widget.onSubmit(_formKey);
+              if (_formKey.currentState!.validate()) {
+                widget.onSubmit(_controller.text);
+              }
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

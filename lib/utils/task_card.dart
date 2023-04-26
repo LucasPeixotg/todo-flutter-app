@@ -14,14 +14,19 @@ class TaskCard extends StatelessWidget {
 
     return FractionallySizedBox(
       widthFactor: 1,
-      heightFactor: 0.5,
+      heightFactor: 0.6,
       child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         color: theme.colorScheme.primary,
         child: Padding(
           padding: const EdgeInsets.only(bottom: 40),
           child: Center(
             child: Text(
               style: textStyle,
+              maxLines: 8,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               title,
